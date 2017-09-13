@@ -1,0 +1,27 @@
+<html>
+<head></head>
+<body>
+	<script type="text/javascript">
+		function(){
+var outerFunction=function(varA){
+    alert('value of varA in outer function ' +varA);
+    var innerFunction = function(){
+        alert('value of varA in inner function ' +varA);
+    }
+    innerFunction();
+};
+outerFunction("hi");
+
+var buggyOuterFunction=function(varA){
+   alert('value of varA in buggy outer function ' +varA);
+    var buggyInnerFunction = function(){
+        var varA = varA || "hello"; //BUG - do not redeclare
+        alert('value of varA in buggy inner function ' +varA);
+    }
+    buggyInnerFunction();
+};
+buggyOuterFunction("hi");
+}
+	</script>
+</body>
+</html>
